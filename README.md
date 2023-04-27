@@ -1,2 +1,2 @@
 # MosqCPP
-My CPP learning,practive and thought
+My CPP learning,practice and thought
