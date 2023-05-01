@@ -19,6 +19,8 @@ endfunction(ictest_test)
 # ictest_test(TestQuikSort.cpp)
 # ictest_test(TestModernCPP.cpp)
 # ictest_test(TestAnimalAST.cpp)
-ictest_test(TestBufferedInputStream.cpp)
-
+#ictest_test(pvm/TestBufferedInputStream.cpp)
+#ictest_test(pvm/TestArrayList.cpp)
+#ictest_test(pvm/TestHiString.cpp)
+ictest_test(pvm/TestCodeObject.cpp)
 
