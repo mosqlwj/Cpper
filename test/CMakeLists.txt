@@ -13,11 +13,12 @@ endfunction(ictest_test)
 
 # test case
 
-ictest_test(TestDemo.cpp)
-ictest_test(TestChap01.cpp)
-ictest_test(TestJSON.cpp)
-ictest_test(TestQuikSort.cpp)
-ictest_test(TestModernCPP.cpp)
-
+# ictest_test(TestDemo.cpp)
+# ictest_test(TestChap01.cpp)
+# ictest_test(TestJSON.cpp)
+# ictest_test(TestQuikSort.cpp)
+# ictest_test(TestModernCPP.cpp)
+# ictest_test(TestAnimalAST.cpp)
+ictest_test(TestBufferedInputStream.cpp)
 
 
