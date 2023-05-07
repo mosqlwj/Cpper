@@ -26,6 +26,8 @@ private:
 
 // 模板必须先实例化，才能.h和.cpp文件分离
 template class ArrayList<int>;
+
+
 class HiObject;
 template class ArrayList<HiObject*>;
 

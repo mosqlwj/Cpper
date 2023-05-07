@@ -2,11 +2,13 @@
 #define CODE_OBJECT
 
 #include "python_vm/object/HiObject.h"
+#include "python_vm/object/HiString.h"
 namespace pvm {
 
-class HiString;
+//class HiString;
 template <class T>
 class ArrayList;
+
 class CodeObject : public HiObject{
 public:
     int m_argcount;
