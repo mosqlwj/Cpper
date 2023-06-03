@@ -22,5 +22,6 @@ endfunction(ictest_test)
 #ictest_test(pvm/TestBufferedInputStream.cpp)
 #ictest_test(pvm/TestArrayList.cpp)
 #ictest_test(pvm/TestHiString.cpp)
-ictest_test(pvm/TestCodeObject.cpp)
+# ictest_test(pvm/TestCodeObject.cpp)
+ictest_test(modern_cpp/TestString.cpp)
 
