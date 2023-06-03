@@ -24,4 +24,5 @@ endfunction(ictest_test)
 #ictest_test(pvm/TestHiString.cpp)
 # ictest_test(pvm/TestCodeObject.cpp)
 ictest_test(modern_cpp/TestString.cpp)
+ictest_test(modern_cpp/TestConst.cpp)
 
