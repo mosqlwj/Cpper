@@ -1,0 +1,37 @@
+{
+  "patterns" : {
+      "function_test": [
+          {
+              "pattern" : 0,
+              "cycles"  : [
+                  {
+                      "cycle" : 0,
+                      "force_pi" : "0000010100",
+                      "observe_po": "00"  
+                  },
+                  {
+                      "cycle" : 1,
+                      "force_pi" : "0000010100",
+                      "observe_po": "00"
+                  }
+              ]
+          },
+          {
+              "pattern" : 1,
+              "cycles"  : [
+                  {
+                      "cycle" : 0,
+                      "force_pi" : "0000010100",
+                      "observe_po": "00"  
+                  },
+                  {
+                      "cycle" : 1,
+                      "force_pi" : "0000010100",
+                      "observe_po": "00"
+                  }
+              ]
+          }
+      ]
+  }
+}
+
