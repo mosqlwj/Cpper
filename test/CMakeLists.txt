@@ -27,5 +27,6 @@ ictest_test(modern_cpp/TestString.cpp)
 ictest_test(modern_cpp/TestConst.cpp)
 ictest_test(modern_cpp/TestCustomTypes.cpp)
 ictest_test(modern_cpp/TestDoctest.cpp)
+ictest_test(modern_cpp/TestStringView.cpp)
 
 
