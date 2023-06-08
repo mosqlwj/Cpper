@@ -10,6 +10,13 @@ namespace netlist {
     using idx_t = std::size_t;
     constexpr idx_t k_invalid_idx = std::numeric_limits<std::size_t>::max();
 
+    enum class SimVal : uint8_t {
+        LOGIC_0 = 0X0F,
+        LOGIC_1 = 0XF0,
+        LOGIC_X = 0X0,
+        LOGIC_Z = 0XFF,
+    };
+
     enum class GateType {
         T_PI,
         T_PO,
@@ -73,18 +80,18 @@ namespace netlist {
         GateType gate_type_{GateType::T_NONE};
         
         // sim_value for analysis
-        // SimValue sim_value_;
+        SimVal sim_value_{SimVal::LOGIC_X};
 
         std::vector<idx_t> gate_pin_; // 0:out, 1:in1, 2:in2 ...
         std::vector<idx_t> pred_gate_;
         std::vector<idx_t> succ_gate_;
-        
+
         std::string name_;
     };
 
 
     /// @brief flat gate netlist 
-    class GateNetlist {
+    class FlatNetlist {
     public:
         
     public:
