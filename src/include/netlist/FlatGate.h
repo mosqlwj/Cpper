@@ -70,7 +70,7 @@ namespace netlist {
         std::vector<idx_t> succ_gate_pin_;
     };
 
-    // flattern gate
+    /// @brief flattern gate
     struct FlatGate : public Object{
         FlatGate(idx_t obj_id, ObjType obj_type, GateType gtype, const std::string& name) 
             : Object(obj_id, obj_type), 
