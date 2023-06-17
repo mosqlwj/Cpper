@@ -25,10 +25,12 @@ namespace pvm {
             HiObject* v, * w, * u, * attr;
             switch (op_code) {
                 case ByteCode::LOAD_CONST:
-                    m_stacks->Add(m_consts->Get(op_arg));
+                    // m_stacks->Add(m_consts->Get(op_arg));
+                    PUSH(m_consts->Get(op_arg));
                     break ;
                 case ByteCode::PRINT_ITEM:
-                    v = m_stacks->Pop();
+                    // v = m_stacks->Pop();
+                    v = POP();
                     v->Print();
                     break ;
 
@@ -37,13 +39,53 @@ namespace pvm {
                     break ;
 
                 case ByteCode::BINARY_ADD:
-                    v = m_stacks->Pop();
-                    w = m_stacks->Pop();
-                    m_stacks->Add(w->Add(v));
+                    // v = m_stacks->Pop();
+                    // w = m_stacks->Pop();
+                    // m_stacks->Add(w->Add(v));
+                    v = POP();
+                    v = POP();
+                    PUSH(w->Add(v));
                     break ;
                 case ByteCode::RETURN_VALUE:
-                    m_stacks->Pop();
+                    // m_stacks->Pop();
+                    POP();
                     break ;
+                case ByteCode::COMPARE_OP:
+                    w = POP();
+                    v = POP();
+                    switch (op_arg) {
+                        case ByteCode::GREATER:
+                            PUSH(v->Greater(w));
+                            break;
+                        case ByteCode::LESS:
+                            PUSH(v->Less(w));
+                            break;
+                        case ByteCode::EQUAL:
+                            PUSH(v->Equal(w));
+                            break;
+                        case ByteCode::NOT_EQUAL:
+                            PUSH(v->NotEqual(w));
+                            break;
+                        case ByteCode::GRATER_EQUAL:
+                            PUSH(v->GreaterEqual(w));
+                            break;
+                        case ByteCode::LESS_EQUAL:
+                            PUSH(v->LessEqual(w));
+                            break;
+                        default : 
+                            printf("Error: Unrecognized compare op %d\n", op_arg);
+
+                    }
+                    break ;
+                case ByteCode::POP_JUMP_IF_FALSE:
+                    v = POP();
+                    if (((HiInteger*)v)->Value() == 0 ) {
+                        pc = op_arg;
+                    }
+                    break;
+                case ByteCode::JUMP_FORWARD:
+                    pc += op_arg;
+                    break;
 
                 default:
                     printf("Error: wrong byte code %d \n", op_code);

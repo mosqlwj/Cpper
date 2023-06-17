@@ -10,7 +10,12 @@
 #include "python_vm/code/CodeObject.h"
 #include "python_vm/code/ByteCode.h"
 
+#define PUSH(x)  m_stacks->Add((x))
+#define POP()    m_stacks->Pop()
+
 namespace pvm {
+
+
     class Interpreter {
     public:
         void Run(CodeObject* codes);

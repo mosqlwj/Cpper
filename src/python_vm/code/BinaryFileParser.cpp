@@ -29,28 +29,29 @@ namespace pvm {
 
     CodeObject *BinaryFileParser::GetCodeObject() {
         int argcount = m_file_stream->ReadInt();
-        std::cout << "argcount: " << argcount << std::endl;
+        printf(" argcount is %d\n", argcount);
         int nlocals = m_file_stream->ReadInt();
-        std::cout << "nlocals: " << nlocals << std::endl;
+        printf(" nlocals is %d\n", nlocals);
         int stacksize = m_file_stream->ReadInt();
-        std::cout << "stacksize: " << stacksize << std::endl;
+        printf(" stacksize is %d\n", stacksize);
         int flag = m_file_stream->ReadInt();
-        std::cout << "flag: " << flag << std::endl;
+        printf(" flag is: 0x %x\n", flag);
+        
 
         auto byte_code = GetByteCodes();
-        std::cout << "byte code: " << byte_code->Value() << std::endl;
+        // printf(" code is: 0x %x\n", byte_code->Value());
         auto consts = GetConsts();
         auto names = GetNames();
         auto var_name = GetVarNames();
         auto free_vars = GetFreeVars();
         auto cell_vars = GetCellVars();
         auto file_name = GetFileName();
-        std::cout << "file name: " << file_name->Value() << std::endl;
         auto module_name = GetName();
-        std::cout << "module name: " << module_name->Value() << std::endl;
         int lineno = m_file_stream->ReadInt();
-        std::cout << "first line no: " << lineno << std::endl;
         auto lnotab = GetNoTable();
+        printf(" file name is: %s\n", file_name->Value());
+        printf(" model is:  %s\n", module_name->Value());
+        printf(" first line is: %d\n", lineno);
 
         return new CodeObject(argcount,
                               nlocals,

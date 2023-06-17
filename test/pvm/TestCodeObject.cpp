@@ -7,8 +7,12 @@
 
 using namespace pvm;
 int main(int argc, char* argv[]) {
-    std::string py_path = "/home/lwj/workspace/MosqCPP/data/pvm/hello.pyc";
-    BufferedInputStream stream(py_path.c_str());
+//    if (argc <= 1) {
+//        printf("vm need a parameter : filename\n");
+//        return 0;
+//    }
+
+    BufferedInputStream stream("/home/lwj/workspace/pythonvm/test/test_if.pyc");
     BinaryFileParser parser(&stream);
     auto codes = parser.Parse();
     Interpreter interpreter;
