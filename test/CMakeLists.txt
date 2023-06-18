@@ -30,5 +30,6 @@ ictest_test(pvm/TestCodeObject.cpp)
 # ictest_test(modern_cpp/TestStringView.cpp)
 ictest_test(modern_cpp/Test5_5.cpp)
 ictest_test(modern_cpp/Test5_6.cpp)
+ictest_test(modern_cpp/Test5_8.cpp)
 
 
