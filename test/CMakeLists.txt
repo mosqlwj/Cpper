@@ -28,5 +28,7 @@ ictest_test(pvm/TestCodeObject.cpp)
 # ictest_test(modern_cpp/TestCustomTypes.cpp)
 # ictest_test(modern_cpp/TestDoctest.cpp)
 # ictest_test(modern_cpp/TestStringView.cpp)
+ictest_test(modern_cpp/Test5_5.cpp)
+ictest_test(modern_cpp/Test5_6.cpp)
 
 
