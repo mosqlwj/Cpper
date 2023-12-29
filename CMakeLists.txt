@@ -27,17 +27,14 @@ if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
 endif ()
 # print ${CMAKE_BUILD_TYPE} info
-message(STATUS "Build directory: ${PROJECT_BINARY_DIR}")
-message(STATUS "ICTest Build Type: ${CMAKE_BUILD_TYPE}")
+message(STATUS "PROJECT_BINARY_DIR: ${PROJECT_BINARY_DIR}")
+message(STATUS "CMAKE_BUILD_TYPE: ${CMAKE_BUILD_TYPE}")
 
-
+include(cmake/setting.cmake)
+include(cmake/thirdparty.cmake)
 # CMake modules
-
 add_subdirectory(src/modern_cpp)
-
-# add_subdirectory(src/python_vm)
-
-# add_subdirectory(test)
+# add_subdirectory(src/leveldb)
 add_subdirectory(thirdparty)
 
 

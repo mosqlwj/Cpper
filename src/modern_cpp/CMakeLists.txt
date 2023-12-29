@@ -2,6 +2,7 @@
 file(GLOB_RECURSE SRC CONFIGURE_DEPENDS ${PROJECT_SOURCE_DIR}/src/modern_cpp/*.cpp)
 add_library(mosq-cpp STATIC ${SRC})
 target_include_directories(mosq-cpp PUBLIC ${PROJECT_SOURCE_DIR}/src/modern_cpp/include)
+message(STATUS ${PROJECT_SOURCE_DIR})
 
 ##########################################
 # link libictest with other libs
