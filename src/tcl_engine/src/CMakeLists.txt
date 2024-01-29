@@ -7,9 +7,11 @@ add_library(tcl STATIC ${SRC})
 target_include_directories(tcl 
     PUBLIC 
     ../include
+    ${TCL_INCLUDE_PATH}
     )
 
 target_link_libraries(tcl 
     PUBLIC
     cli11
+    ${TCL_LIBRARY}
     )

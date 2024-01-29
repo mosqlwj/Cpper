@@ -1,7 +1,7 @@
 #include <tcl.h>
 
-#ifndef TCL_ENGINE
-#define TCL_ENGINE
+#ifndef TCL_ENGINE_H
+#define TCL_ENGINE_H
 
 class TclEngine {
     public:

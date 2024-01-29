@@ -10,7 +10,7 @@ endfunction(cpp_test)
 
 # test case
 
-cpp_test(test_tcl.cpp)
+# cpp_test(test_tcl.cpp)
 # cpp_test(test_cli11.cpp)
-
+cpp_test(test_read_verilog_cmd.cpp)
 
