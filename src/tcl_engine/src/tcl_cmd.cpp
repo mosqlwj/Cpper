@@ -25,6 +25,7 @@ int CmdProc(ClientData client_data, Tcl_Interp* interp, int objc, Tcl_Obj* const
 
     // 获取指令名称
     const char* cmd_name = Tcl_GetString(objv[0]);
+    std::cout << "cmd_name: " << cmd_name << std::endl;
     TclCmd* cmd = TclCmds::GetTclCmds()->GetTclCmd(cmd_name);
 
     if (cmd == nullptr) {

@@ -93,6 +93,7 @@ public:
     }
     
     void AddTclCmd(std::unique_ptr<TclCmd> cmd) {
+        std::cout << "Register TclCmd: " << cmd->GetCmdName() << std::endl;
         TclEngine::GetTclEngine()->CreateCommand(cmd->GetCmdName(), CmdProc);
         cmd_map_.emplace(cmd->GetCmdName(), std::move(cmd));
     }
@@ -110,7 +111,7 @@ private:
     TclCmds();
     virtual ~TclCmds();
     static TclCmds* tcl_cmds_;
-    std::map<const char*, std::unique_ptr<TclCmd>> cmd_map_;
+    std::map<std::string, std::unique_ptr<TclCmd>> cmd_map_;
 
 };
 
