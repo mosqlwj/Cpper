@@ -35,7 +35,7 @@ int Tcl_AppInit( Tcl_Interp *interp) {
 
 int main(int argc, char* argv[]) {
    
-    Tcl_Main(argc, argv, Tcl_AppInit);
+    Tcl_MainEx(argc, argv, Tcl_AppInit, TclEngine::GetTclEngine()->GetTclInterp());
 
     return 0;
 }
