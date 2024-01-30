@@ -121,10 +121,7 @@ private:
  * @param cmd_class 指令类
  * @param cmd_name 指令名称
  */
-// extern void RegisterTclCmd(TclCmd* cmd_class, const char* cmd_name) {
-//     auto cmd_ptr = std::make_unique<TclCmd>(cmd_name);
-//     TclCmds::GetTclCmds()->AddTclCmd(std::move(cmd_ptr));
-// }
+
 #define REGISTER_TCL_CMD(cmd_class, cmd_name)               \
     do {                                                    \
         auto cmd_ptr = std::make_unique<cmd_class>(cmd_name);   \
