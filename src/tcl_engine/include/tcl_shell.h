@@ -49,8 +49,14 @@ public:
 
 private:
     static int TclAppInit(Tcl_Interp *interp) {
+        /* Call Tcl_AppInit function */
+        if (Tcl_Init(interp) == TCL_ERROR) {
+            return TCL_ERROR;
+        }
+        /* Call user-defined initialization */
         return user_init_();
     }
+    
     static int (*user_init_)();
 
     TclShell() {
