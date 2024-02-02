@@ -12,5 +12,6 @@ endfunction(cpp_test)
 
 # cpp_test(test_tcl.cpp)
 # cpp_test(test_cli11.cpp)
-cpp_test(test_read_verilog_cmd.cpp)
+# cpp_test(test_read_verilog_cmd.cpp)
+cpp_test(test_tcl_shell.cpp)
 

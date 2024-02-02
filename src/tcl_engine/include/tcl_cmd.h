@@ -66,9 +66,6 @@ public:
 
 protected:
     CLI::App* app_{nullptr}; // CLI11应用对象
-    
-private:
-
     const char* cmd_name_{nullptr}; // 指令名称
     
      
