@@ -12,4 +12,5 @@ endfunction(cpp_test)
 
 cpp_test(test_modern_cpp.cpp)
 cpp_test(test_string_view.cpp)
+cpp_test(test_p_2_1.cpp)
 
