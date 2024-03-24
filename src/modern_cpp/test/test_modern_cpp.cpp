@@ -7,6 +7,6 @@
 #include <string>
 #include <string_view>
 
-TEST_CASE("testing MODERN CPP") {
+TEST_CASE("Testing Modern CPP") {
     ModernCPP().Print();
 }

@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.16)
 
 ############################################################
 # 项目设置
-project(MOSQCPP
+project(Cpper
         VERSION 0.1.0
         DESCRIPTION "My CPP Project Collection"
         LANGUAGES C CXX   # Support C & CPP language
@@ -73,5 +73,4 @@ message(STATUS "PROJECT_BINARY_DIR: ${PROJECT_BINARY_DIR}")
 message(STATUS "CMAKE_ARCHIVE_OUTPUT_DIRECTORY: ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}")
 message(STATUS "CMAKE_RUNTIME_OUTPUT_DIRECTORY: ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
 message(STATUS "CMAKE_CXX_FLAGS: ${CMAKE_CXX_FLAGS}")
-
 message(STATUS "CMAKE_BUILD_TYPE: ${CMAKE_BUILD_TYPE}")
