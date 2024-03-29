@@ -69,8 +69,7 @@ TEST_CASE("Test Case04") {
     //cout << typeid(x4).name() << endl;
 }
 
-void case5()
-{
+TEST_CASE("Test Case05") {
     int x = 0;
 
     decltype(x)     x1;
@@ -132,11 +131,3 @@ private:
     iter_type   m_pos;
 };
 
-TEST_CASE("testing string view") {
-    std::string s1{"Text"};
-    std::string_view sv1 {s1};
-    std::cout << sv1 << "\n"; 
-    using namespace std::string_literals;
-    std::string_view sv2 {"std::string Literal"s};
-    // std::cout << sv2; 
-}
