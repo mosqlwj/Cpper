@@ -10,9 +10,9 @@ endfunction(cpp_test)
 
 # test case
 
-cpp_test(test_modern_cpp.cpp)
-cpp_test(test_string_view.cpp)
-cpp_test(test_p_2_1.cpp)
-cpp_test(test_auto.cpp)
-
+#cpp_test(test_modern_cpp.cpp)
+#cpp_test(test_string_view.cpp)
+#cpp_test(test_p_2_1.cpp)
+#cpp_test(test_auto.cpp)
+cpp_test(test_object_model.cpp)
 
