@@ -14,5 +14,6 @@ endfunction(cpp_test)
 #cpp_test(test_string_view.cpp)
 #cpp_test(test_p_2_1.cpp)
 #cpp_test(test_auto.cpp)
-cpp_test(test_object_model.cpp)
-
+#cpp_test(test_object_model.cpp)
+#cpp_test(test_smarter_ptr.cpp)
+cpp_test(test_exception.cpp)
