@@ -4,7 +4,8 @@ function(cpp_test test_file)
     # get file name
     get_filename_component(test_target_name ${test_file} NAME_WE)
     add_executable(${test_target_name} ${test_file})
-    target_link_libraries(${test_target_name} PUBLIC tcl doctest)
+    # target_link_libraries(${test_target_name} PUBLIC tcl doctest)
+    target_link_libraries(${test_target_name} PUBLIC doctest)
     add_test(NAME ${test_target_name} COMMAND ${test_target_name})
 endfunction(cpp_test)
 
@@ -13,5 +14,6 @@ endfunction(cpp_test)
 # cpp_test(test_tcl.cpp)
 # cpp_test(test_cli11.cpp)
 # cpp_test(test_read_verilog_cmd.cpp)
-cpp_test(test_tcl_shell.cpp)
+# cpp_test(test_tcl_shell.cpp)
+cpp_test(test_tcl_cmd.cpp)
 
