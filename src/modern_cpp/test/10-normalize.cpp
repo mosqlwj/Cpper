@@ -28,6 +28,6 @@ int main(int argc, char* argv[]) {
         return EXIT_FAILURE;
     }
 
-    std::cout << std::filesystem::canonical(dir) << std::endl;
+    std::cout << std::filesystem::canonical(dir).c_str() << std::endl;
     return EXIT_SUCCESS;
 }
