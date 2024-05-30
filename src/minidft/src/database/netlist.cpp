@@ -1,8 +1,8 @@
 //
 // Created by liwenjie on 2023/4/27.
 //
-#include "netlist.h"
 
+#include "database/netlist.h"
 #include <iostream>
 
 namespace ndb {
