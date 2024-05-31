@@ -1,14 +1,14 @@
 # add ictest src to a static library
 file(GLOB_RECURSE SRC CONFIGURE_DEPENDS ../src/*/*.cpp)
-add_library(ndb STATIC ${SRC})
+add_library(minidft STATIC ${SRC})
 
 
-target_include_directories(ndb 
+target_include_directories(minidft
     PUBLIC 
     ../include
     )
 
-target_link_libraries(ndb
+target_link_libraries(minidft
     PUBLIC
     json
     )

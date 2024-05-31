@@ -2,8 +2,8 @@
 // Created by liwenjie on 2023/4/27.
 //
 
-#ifndef NETLIST_H
-#define NETLIST_H
+#ifndef NDB_NETLIST_H
+#define NDB_NETLIST_H
 
 #include <iostream>
 
@@ -16,4 +16,4 @@ public:
 
 }
 
-#endif//NETLIST_H
+#endif // NDB_NETLIST_H
