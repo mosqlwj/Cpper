@@ -3,10 +3,17 @@
 
 #include "object.h"
 
+class Instance;
 namespace ndb {
 
     class Pin : public Object{
 
+    public:
+    private:
+        int32_t pin_index_;
+        Instance* of_instance_;
+
+        //
     };
 }
 

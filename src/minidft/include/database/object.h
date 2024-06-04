@@ -8,27 +8,27 @@ namespace ndb {
 class Object {
 
 public:
-    Object(const std::string& name) : name_(name) {}
+    explicit Object(const std::string& name) : name_(name) {}
 
     const std::string& GetName() const { return name_; }
 
-    virtual unsigned IsNetlist()  { return 0; }
-    virtual unsigned IsLibrary()  { return 0; }
+    virtual bool IsNetlist()  { return false; }
+    virtual bool IsLibrary()  { return false; }
     
-    virtual unsigned IsModule()   { return 0; }
-    virtual unsigned IsInstance() { return 0; }
-    virtual unsigned IsLibCell()  { return 0; }  // instance of library module
-    virtual unsigned IsAssign()  { return 0; }
+    virtual bool IsModule()   { return false; }
+    virtual bool IsInstance() { return false; }
+    virtual bool IsLibCell()  { return false; }  // instance of library module
+    virtual bool IsAssign()  { return false; }
     
-    virtual unsigned IsPort()     { return 0; }
-    virtual unsigned IsNet()      { return 0; }
-    virtual unsigned IsPin()      { return 0; }
-    virtual unsigned IsPortBus()  { return 0; }
-    virtual unsigned IsNetBus()   { return 0; }
-    virtual unsigned IsPinBus()   { return 0; }
+    virtual bool IsPort()     { return false; }
+    virtual bool IsNet()      { return false; }
+    virtual bool IsPin()      { return false; }
+    virtual bool IsPortBus()  { return false; }
+    virtual bool IsNetBus()   { return false; }
+    virtual bool IsPinBus()   { return false; }
 
-    virtual unsigned IsPrimitive() { return 0; }
-    virtual unsigned IsGatePin() { return 0; }
+    virtual bool IsPrimitive() { return false; }
+    virtual bool IsGatePin() { return false; }
 
 private:
     std::string name_;
