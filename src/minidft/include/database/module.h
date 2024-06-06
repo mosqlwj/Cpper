@@ -7,11 +7,14 @@
 
 #include <vector>
 #include <unordered_map>
+#include <cassert>
 
 #include "object.h"
 
 class Instance;
 class Port;
+class Net;
+class Assign;
 
 namespace ndb {
     class Module : public Object {
@@ -20,19 +23,34 @@ namespace ndb {
 
         bool IsModule() override { return true; }
 
-        void AddPort() {}
+        void AddPort(Port* port) {
+            assert(port);
+            ports_.emplace_back(port);
+        }
+        auto GetPorts() const { return ports_; }
+        auto GetPortByName(const std::string& name) { return name_to_port_[name]; }
 
 
 
     private:
         // basic attribute
 
-        std::vector<Instance*> instances_;
-        std::unordered_map<std::string, Instance*> name_to_instance_;
+        // include ports
         std::vector<Port*> ports_;
         std::unordered_map<std::string, Port*> name_to_port_;
 
-        // 黑盒设置
+        // include nets
+        std::vector<Net*> nets_;
+        std::unordered_map<std::string, Net*> name_to_net_;
+
+        // include assign
+        std::vector<Assign*> assigns_;
+
+        // include instance
+        std::vector<Instance*> instances_;
+        std::unordered_map<std::string, Instance*> name_to_instance_;
+
+        // black box setting
         bool is_black_box_ = false;
 
 
