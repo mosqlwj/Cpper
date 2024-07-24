@@ -1,0 +1,248 @@
+{
+  "design": {
+    "name": "$root",
+    "kind": "Root",
+    "addr": 5261436533760,
+    "members": [
+      {
+        "name": "",
+        "kind": "CompilationUnit",
+        "addr": 5261436730288
+      },
+      {
+        "name": "case041",
+        "kind": "Instance",
+        "addr": 5261438223008,
+        "body": {
+          "name": "case041",
+          "kind": "InstanceBody",
+          "addr": 5261436730584,
+          "members": [
+            {
+              "name": "G0",
+              "kind": "Port",
+              "addr": 5261438224240,
+              "type": "logic",
+              "direction": "In",
+              "internalSymbol": "5261438223136 G0"
+            },
+            {
+              "name": "G1",
+              "kind": "Port",
+              "addr": 5261438224368,
+              "type": "logic[1:0]",
+              "direction": "In",
+              "internalSymbol": "5261438223504 G1"
+            },
+            {
+              "name": "G2",
+              "kind": "Port",
+              "addr": 5261438224496,
+              "type": "logic[2:0]",
+              "direction": "Out",
+              "internalSymbol": "5261438223872 G2"
+            },
+            {
+              "name": "G0",
+              "kind": "Net",
+              "addr": 5261438223136,
+              "type": "logic",
+              "netType": {
+                "name": "wire",
+                "kind": "NetType",
+                "addr": 5261436531520,
+                "type": "logic"
+              }
+            },
+            {
+              "name": "G1",
+              "kind": "Net",
+              "addr": 5261438223504,
+              "type": "logic[1:0]",
+              "netType": {
+                "name": "wire",
+                "kind": "NetType",
+                "addr": 5261436531520,
+                "type": "logic"
+              }
+            },
+            {
+              "name": "G2",
+              "kind": "Net",
+              "addr": 5261438223872,
+              "type": "logic[2:0]",
+              "netType": {
+                "name": "wire",
+                "kind": "NetType",
+                "addr": 5261436531520,
+                "type": "logic"
+              }
+            },
+            {
+              "name": "n_1",
+              "kind": "Net",
+              "addr": 5261438222352,
+              "type": "logic",
+              "netType": {
+                "name": "wire",
+                "kind": "NetType",
+                "addr": 5261436531520,
+                "type": "logic"
+              }
+            },
+            {
+              "name": "",
+              "kind": "ContinuousAssign",
+              "addr": 5261438224648,
+              "assignment": {
+                "kind": "Assignment",
+                "type": "logic",
+                "left": {
+                  "kind": "ElementSelect",
+                  "type": "logic",
+                  "value": {
+                    "kind": "NamedValue",
+                    "type": "logic[2:0]",
+                    "symbol": "5261438223872 G2"
+                  },
+                  "selector": {
+                    "kind": "IntegerLiteral",
+                    "type": "int",
+                    "value": "0",
+                    "constant": "0"
+                  }
+                },
+                "right": {
+                  "kind": "ElementSelect",
+                  "type": "logic",
+                  "value": {
+                    "kind": "NamedValue",
+                    "type": "logic[1:0]",
+                    "symbol": "5261438223504 G1"
+                  },
+                  "selector": {
+                    "kind": "IntegerLiteral",
+                    "type": "int",
+                    "value": "0",
+                    "constant": "0"
+                  }
+                },
+                "isNonBlocking": false
+              }
+            },
+            {
+              "name": "",
+              "kind": "ContinuousAssign",
+              "addr": 5261438224736,
+              "assignment": {
+                "kind": "Assignment",
+                "type": "logic",
+                "left": {
+                  "kind": "ElementSelect",
+                  "type": "logic",
+                  "value": {
+                    "kind": "NamedValue",
+                    "type": "logic[2:0]",
+                    "symbol": "5261438223872 G2"
+                  },
+                  "selector": {
+                    "kind": "IntegerLiteral",
+                    "type": "int",
+                    "value": "1",
+                    "constant": "1"
+                  }
+                },
+                "right": {
+                  "kind": "ElementSelect",
+                  "type": "logic",
+                  "value": {
+                    "kind": "NamedValue",
+                    "type": "logic[1:0]",
+                    "symbol": "5261438223504 G1"
+                  },
+                  "selector": {
+                    "kind": "IntegerLiteral",
+                    "type": "int",
+                    "value": "1",
+                    "constant": "1"
+                  }
+                },
+                "isNonBlocking": false
+              }
+            },
+            {
+              "name": "",
+              "kind": "ContinuousAssign",
+              "addr": 5261438224824,
+              "assignment": {
+                "kind": "Assignment",
+                "type": "logic",
+                "left": {
+                  "kind": "ElementSelect",
+                  "type": "logic",
+                  "value": {
+                    "kind": "NamedValue",
+                    "type": "logic[2:0]",
+                    "symbol": "5261438223872 G2"
+                  },
+                  "selector": {
+                    "kind": "IntegerLiteral",
+                    "type": "int",
+                    "value": "2",
+                    "constant": "2"
+                  }
+                },
+                "right": {
+                  "kind": "NamedValue",
+                  "type": "logic",
+                  "symbol": "5261438223136 G0"
+                },
+                "isNonBlocking": false
+              }
+            },
+            {
+              "name": "",
+              "kind": "ContinuousAssign",
+              "addr": 5261438224912,
+              "assignment": {
+                "kind": "Assignment",
+                "type": "logic",
+                "left": {
+                  "kind": "NamedValue",
+                  "type": "logic",
+                  "symbol": "5261438222352 n_1"
+                },
+                "right": {
+                  "kind": "Conversion",
+                  "type": "logic",
+                  "operand": {
+                    "kind": "IntegerLiteral",
+                    "type": "bit[0:0]",
+                    "value": "1'b0",
+                    "constant": "1'b0"
+                  },
+                  "constant": "1'b0"
+                },
+                "isNonBlocking": false
+              }
+            }
+          ],
+          "definition": "5261436324864 case041"
+        },
+        "connections": [
+        ]
+      }
+    ]
+  },
+  "definitions": [
+    {
+      "name": "case041",
+      "kind": "Definition",
+      "addr": 5261436324864,
+      "defaultNetType": "5261436531520 wire",
+      "definitionKind": "Module",
+      "defaultLifetime": "Static",
+      "unconnectedDrive": "None"
+    }
+  ]
+}

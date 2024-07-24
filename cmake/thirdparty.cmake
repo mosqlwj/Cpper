@@ -24,3 +24,7 @@ if (TCL_FOUND)
 else()
     message(STATUS "TCL not found")
 endif()
+
+############################################################
+# 添加slang库
+add_subdirectory(${HOME_THIRDPARTY}/slang-6.0)

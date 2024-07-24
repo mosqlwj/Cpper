@@ -1,0 +1,256 @@
+{
+  "design": {
+    "name": "$root",
+    "kind": "Root",
+    "addr": 3873155464192,
+    "members": [
+      {
+        "name": "",
+        "kind": "CompilationUnit",
+        "addr": 3873157155760
+      },
+      {
+        "name": "case021",
+        "kind": "Instance",
+        "addr": 3873157157320,
+        "body": {
+          "name": "case021",
+          "kind": "InstanceBody",
+          "addr": 3873157156056,
+          "members": [
+            {
+              "name": "G0",
+              "kind": "Port",
+              "addr": 3873157158552,
+              "type": "logic[3:0]",
+              "direction": "In",
+              "internalSymbol": "3873157157448 G0"
+            },
+            {
+              "name": "G1",
+              "kind": "Port",
+              "addr": 3873157158680,
+              "type": "logic[1:0]",
+              "direction": "In",
+              "internalSymbol": "3873157157816 G1"
+            },
+            {
+              "name": "G2",
+              "kind": "Port",
+              "addr": 3873157158808,
+              "type": "logic",
+              "direction": "Out",
+              "internalSymbol": "3873157158184 G2"
+            },
+            {
+              "name": "G0",
+              "kind": "Net",
+              "addr": 3873157157448,
+              "type": "logic[3:0]",
+              "netType": {
+                "name": "wire",
+                "kind": "NetType",
+                "addr": 3873155461952,
+                "type": "logic"
+              }
+            },
+            {
+              "name": "G1",
+              "kind": "Net",
+              "addr": 3873157157816,
+              "type": "logic[1:0]",
+              "netType": {
+                "name": "wire",
+                "kind": "NetType",
+                "addr": 3873155461952,
+                "type": "logic"
+              }
+            },
+            {
+              "name": "G2",
+              "kind": "Net",
+              "addr": 3873157158184,
+              "type": "logic",
+              "netType": {
+                "name": "wire",
+                "kind": "NetType",
+                "addr": 3873155461952,
+                "type": "logic"
+              }
+            },
+            {
+              "name": "n_1",
+              "kind": "Net",
+              "addr": 3873157156880,
+              "type": "logic[0:0]",
+              "netType": {
+                "name": "wire",
+                "kind": "NetType",
+                "addr": 3873155461952,
+                "type": "logic"
+              }
+            },
+            {
+              "name": "inst",
+              "kind": "Instance",
+              "addr": 3873157158960,
+              "body": {
+                "name": "M1",
+                "kind": "InstanceBody",
+                "addr": 3873157159080,
+                "members": [
+                  {
+                    "name": "A",
+                    "kind": "Port",
+                    "addr": 3873157161712,
+                    "type": "logic[2:0]",
+                    "direction": "In",
+                    "internalSymbol": "3873157160552 A"
+                  },
+                  {
+                    "name": "B",
+                    "kind": "Port",
+                    "addr": 3873157161840,
+                    "type": "logic[1:0]",
+                    "direction": "In",
+                    "internalSymbol": "3873157160976 B"
+                  },
+                  {
+                    "name": "Y",
+                    "kind": "Port",
+                    "addr": 3873157161968,
+                    "type": "logic",
+                    "direction": "Out",
+                    "internalSymbol": "3873157161344 Y"
+                  },
+                  {
+                    "name": "A",
+                    "kind": "Net",
+                    "addr": 3873157160552,
+                    "type": "logic[2:0]",
+                    "netType": {
+                      "name": "wire",
+                      "kind": "NetType",
+                      "addr": 3873155461952,
+                      "type": "logic"
+                    }
+                  },
+                  {
+                    "name": "B",
+                    "kind": "Net",
+                    "addr": 3873157160976,
+                    "type": "logic[1:0]",
+                    "netType": {
+                      "name": "wire",
+                      "kind": "NetType",
+                      "addr": 3873155461952,
+                      "type": "logic"
+                    }
+                  },
+                  {
+                    "name": "Y",
+                    "kind": "Net",
+                    "addr": 3873157161344,
+                    "type": "logic",
+                    "netType": {
+                      "name": "wire",
+                      "kind": "NetType",
+                      "addr": 3873155461952,
+                      "type": "logic"
+                    }
+                  }
+                ],
+                "definition": "3873155255296 M1"
+              },
+              "connections": [
+                {
+                  "port": "3873157161712 A",
+                  "expr": {
+                    "kind": "RangeSelect",
+                    "type": "logic[3:1]",
+                    "selectionKind": "Simple",
+                    "value": {
+                      "kind": "NamedValue",
+                      "type": "logic[3:0]",
+                      "symbol": "3873157157448 G0"
+                    },
+                    "left": {
+                      "kind": "IntegerLiteral",
+                      "type": "int",
+                      "value": "3",
+                      "constant": "3"
+                    },
+                    "right": {
+                      "kind": "IntegerLiteral",
+                      "type": "int",
+                      "value": "1",
+                      "constant": "1"
+                    }
+                  }
+                },
+                {
+                  "port": "3873157161840 B",
+                  "expr": {
+                    "kind": "NamedValue",
+                    "type": "logic[1:0]",
+                    "symbol": "3873157157816 G1"
+                  }
+                },
+                {
+                  "port": "3873157161968 Y",
+                  "expr": {
+                    "kind": "Assignment",
+                    "type": "logic",
+                    "left": {
+                      "kind": "ElementSelect",
+                      "type": "logic",
+                      "value": {
+                        "kind": "NamedValue",
+                        "type": "logic[0:0]",
+                        "symbol": "3873157156880 n_1"
+                      },
+                      "selector": {
+                        "kind": "IntegerLiteral",
+                        "type": "int",
+                        "value": "0",
+                        "constant": "0"
+                      }
+                    },
+                    "right": {
+                      "kind": "EmptyArgument",
+                      "type": "logic"
+                    },
+                    "isNonBlocking": false
+                  }
+                }
+              ]
+            }
+          ],
+          "definition": "3873155267584 case021"
+        },
+        "connections": [
+        ]
+      }
+    ]
+  },
+  "definitions": [
+    {
+      "name": "M1",
+      "kind": "Definition",
+      "addr": 3873155255296,
+      "defaultNetType": "3873155461952 wire",
+      "definitionKind": "Module",
+      "defaultLifetime": "Static",
+      "unconnectedDrive": "None"
+    },
+    {
+      "name": "case021",
+      "kind": "Definition",
+      "addr": 3873155267584,
+      "defaultNetType": "3873155461952 wire",
+      "definitionKind": "Module",
+      "defaultLifetime": "Static",
+      "unconnectedDrive": "None"
+    }
+  ]
+}

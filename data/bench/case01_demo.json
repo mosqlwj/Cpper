@@ -1,0 +1,235 @@
+{
+  "design": {
+    "name": "$root",
+    "kind": "Root",
+    "addr": 5798575881216,
+    "members": [
+      {
+        "name": "",
+        "kind": "CompilationUnit",
+        "addr": 5798576077744
+      },
+      {
+        "name": "case011",
+        "kind": "Instance",
+        "addr": 5798577569952,
+        "body": {
+          "name": "case011",
+          "kind": "InstanceBody",
+          "addr": 5798576078040,
+          "members": [
+            {
+              "name": "G0",
+              "kind": "Port",
+              "addr": 5798577571184,
+              "type": "logic",
+              "direction": "In",
+              "internalSymbol": "5798577570080 G0"
+            },
+            {
+              "name": "G1",
+              "kind": "Port",
+              "addr": 5798577571312,
+              "type": "logic",
+              "direction": "In",
+              "internalSymbol": "5798577570448 G1"
+            },
+            {
+              "name": "G2",
+              "kind": "Port",
+              "addr": 5798577571440,
+              "type": "logic",
+              "direction": "Out",
+              "internalSymbol": "5798577570816 G2"
+            },
+            {
+              "name": "G1",
+              "kind": "Net",
+              "addr": 5798577570448,
+              "type": "logic",
+              "netType": {
+                "name": "wire",
+                "kind": "NetType",
+                "addr": 5798575878976,
+                "type": "logic"
+              }
+            },
+            {
+              "name": "G0",
+              "kind": "Net",
+              "addr": 5798577570080,
+              "type": "logic",
+              "netType": {
+                "name": "wire",
+                "kind": "NetType",
+                "addr": 5798575878976,
+                "type": "logic"
+              }
+            },
+            {
+              "name": "G2",
+              "kind": "Net",
+              "addr": 5798577570816,
+              "type": "logic",
+              "netType": {
+                "name": "wire",
+                "kind": "NetType",
+                "addr": 5798575878976,
+                "type": "logic"
+              }
+            },
+            {
+              "name": "n_1",
+              "kind": "Net",
+              "addr": 5798576078440,
+              "type": "logic",
+              "netType": {
+                "name": "wire",
+                "kind": "NetType",
+                "addr": 5798575878976,
+                "type": "logic"
+              }
+            },
+            {
+              "name": "g81",
+              "kind": "Instance",
+              "addr": 5798577571592,
+              "body": {
+                "name": "INVX1",
+                "kind": "InstanceBody",
+                "addr": 5798577571712,
+                "members": [
+                  {
+                    "name": "A",
+                    "kind": "Port",
+                    "addr": 5798577573272,
+                    "type": "logic",
+                    "direction": "In",
+                    "internalSymbol": "5798577572536 A"
+                  },
+                  {
+                    "name": "Y",
+                    "kind": "Port",
+                    "addr": 5798577573400,
+                    "type": "logic",
+                    "direction": "Out",
+                    "internalSymbol": "5798577572904 Y"
+                  },
+                  {
+                    "name": "A",
+                    "kind": "Net",
+                    "addr": 5798577572536,
+                    "type": "logic",
+                    "netType": {
+                      "name": "wire",
+                      "kind": "NetType",
+                      "addr": 5798575878976,
+                      "type": "logic"
+                    }
+                  },
+                  {
+                    "name": "Y",
+                    "kind": "Net",
+                    "addr": 5798577572904,
+                    "type": "logic",
+                    "netType": {
+                      "name": "wire",
+                      "kind": "NetType",
+                      "addr": 5798575878976,
+                      "type": "logic"
+                    }
+                  }
+                ],
+                "definition": "5798575672320 INVX1"
+              },
+              "connections": [
+                {
+                  "port": "5798577573272 A",
+                  "expr": {
+                    "kind": "NamedValue",
+                    "type": "logic",
+                    "symbol": "5798577570080 G0"
+                  }
+                },
+                {
+                  "port": "5798577573400 Y",
+                  "expr": {
+                    "kind": "Assignment",
+                    "type": "logic",
+                    "left": {
+                      "kind": "NamedValue",
+                      "type": "logic",
+                      "symbol": "5798576078440 n_1"
+                    },
+                    "right": {
+                      "kind": "EmptyArgument",
+                      "type": "logic"
+                    },
+                    "isNonBlocking": false
+                  }
+                }
+              ]
+            },
+            {
+              "name": "g17",
+              "kind": "UninstantiatedDef",
+              "addr": 5798577572112,
+              "definitionName": "NAND2X2",
+              "parameters": [
+              ],
+              "ports": [
+                {
+                  "name": "A",
+                  "expr": {
+                    "kind": "NamedValue",
+                    "type": "logic",
+                    "symbol": "5798577570448 G1"
+                  }
+                },
+                {
+                  "name": "B",
+                  "expr": {
+                    "kind": "NamedValue",
+                    "type": "logic",
+                    "symbol": "5798576078440 n_1"
+                  }
+                },
+                {
+                  "name": "Y",
+                  "expr": {
+                    "kind": "NamedValue",
+                    "type": "logic",
+                    "symbol": "5798577570816 G2"
+                  }
+                }
+              ]
+            }
+          ],
+          "definition": "5798575684608 case011"
+        },
+        "connections": [
+        ]
+      }
+    ]
+  },
+  "definitions": [
+    {
+      "name": "INVX1",
+      "kind": "Definition",
+      "addr": 5798575672320,
+      "defaultNetType": "5798575878976 wire",
+      "definitionKind": "Module",
+      "defaultLifetime": "Static",
+      "unconnectedDrive": "None"
+    },
+    {
+      "name": "case011",
+      "kind": "Definition",
+      "addr": 5798575684608,
+      "defaultNetType": "5798575878976 wire",
+      "definitionKind": "Module",
+      "defaultLifetime": "Static",
+      "unconnectedDrive": "None"
+    }
+  ]
+}

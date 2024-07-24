@@ -1,0 +1,4 @@
+node: 7bcff261b46a7c72aef0be3a24b25334d74077ea
+node-date: 2024-04-21T14:26:15-04:00
+describe-name: v6.0
+ref-names: tag: v6.0

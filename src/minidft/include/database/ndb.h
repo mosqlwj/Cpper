@@ -8,7 +8,7 @@
 namespace ndb {
     class NDB {
     public:
-        void GetNDB();
+        void GetNDB(); // 单例模式
 
         // 读取文件，构建网表数据库
         void ReadLibrary();
