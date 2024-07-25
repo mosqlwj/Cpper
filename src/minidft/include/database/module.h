@@ -11,9 +11,7 @@
 
 #include "object.h"
 #include "port.h"
-#include "port_bus.h"
 #include "net.h"
-#include "net_bus.h"
 #include "instance.h"
 #include "assign.h"
 

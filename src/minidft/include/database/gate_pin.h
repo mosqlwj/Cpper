@@ -7,8 +7,8 @@
 #ifndef NDB_GATE_PIN_H
 #define NDB_GATE_PIN_H
 
-#include "direction.h"
 #include "object.h"
+#include "define.h"
 #include <cassert>
 
 namespace ndb {

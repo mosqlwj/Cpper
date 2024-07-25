@@ -1,5 +1,5 @@
 
-// 测试位宽bitwidth
+// 测试RangeSelect
 module M1 (A, B, Y);
 input [2:0]  A;
 input [1:0] B;
