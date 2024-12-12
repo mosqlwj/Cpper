@@ -27,4 +27,4 @@ endif()
 
 ############################################################
 # 添加slang库
-add_subdirectory(${HOME_THIRDPARTY}/slang-6.0)
+# add_subdirectory(${HOME_THIRDPARTY}/slang-6.0)

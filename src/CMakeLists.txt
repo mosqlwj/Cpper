@@ -9,7 +9,9 @@
 
 #add_subdirectory(./tcl_engine)
 
-add_subdirectory(./minidft)
+# add_subdirectory(./minidft)
+
+add_subdirectory(./leetcode)
 
 
 
