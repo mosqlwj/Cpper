@@ -45,3 +45,28 @@ TEST_CASE("Testing Exception Case01") {
     }
 
 }
+
+////////////////////////////////////////////////////
+
+class my_exception2 : public std::exception {
+
+    public:
+        my_exception2(const std::string& msg) : msg(msg) {}
+        const char* what() const noexcept override {
+            return msg.c_str();
+        }
+    private:
+        std::string msg;
+        // int code;
+
+};
+
+TEST_CASE("Testing Exception Case02") {
+    try {
+        throw my_exception2("exception2 error occurred");
+    } catch (const std::exception& e) {
+        std::cout << e.what() << std::endl;
+    }
+    
+    std::cout << "end of test" << std::endl;
+}
