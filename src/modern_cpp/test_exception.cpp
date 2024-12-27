@@ -61,12 +61,18 @@ class my_exception2 : public std::exception {
 
 };
 
-TEST_CASE("Testing Exception Case02") {
+TEST_CASE("2 Testing Exception Case02") {
     try {
         throw my_exception2("exception2 error occurred");
     } catch (const std::exception& e) {
         std::cout << e.what() << std::endl;
     }
     
+    std::cout << "end of test" << std::endl;
+}
+
+TEST_CASE("3 Testing Exception Case02") {
+    throw my_exception2("exception2 error occurred");
+
     std::cout << "end of test" << std::endl;
 }

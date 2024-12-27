@@ -131,3 +131,18 @@ private:
     iter_type   m_pos;
 };
 
+auto f(int x) {
+    return x * x;
+}
+
+void f2() {
+    std::map<std::string, std::string> table;
+    for (auto &[k, v]: table) { // 编译通过：k 的部分会自动带上 const
+//        k = "hello"; // 编译出错：k 推导为 std::string const & 不可修改
+        v = "world"; // 没问题：v 推导为 std::string & 可以就地修改
+    }
+}
+
+TEST_CASE("Test f2") {
+    f2();
+}
