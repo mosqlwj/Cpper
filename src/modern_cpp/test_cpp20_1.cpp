@@ -109,3 +109,68 @@ std::string f(const T1 a, const T2 b) {
 TEST_CASE("Test CPP20 005")  {
     std::cout << std::format("{}", f(1, 2));
 }
+
+/**
+* 测试vector quick delete
+*/
+void printc(auto& r) {
+    std::cout << std::format("1 size is {}\n", r.size());
+    for (auto& e : r) {
+        std::cout << std::format("{} ", e);
+    }
+    cout << "\n";
+}
+
+template<typename T>
+void quick_delete(T& v, size_t idx) {
+    if (idx < v.size()) {
+        v[idx] = std::move(v.back());
+        std::cout << std::format("2 size is {} \n", v.size());
+        v.pop_back();
+        std::cout << std::format("3 size is {} \n", v.size());
+    }
+}
+
+TEST_CASE("Test CPP20 006")  {
+    vector v{ 12, 196, 47, 38, 19 };
+    printc(v);
+    quick_delete(v, 2);
+    printc(v);
+}
+
+/**
+* 测试map
+*/
+
+struct BigString {
+    string s_;
+    BigString(const string& s) : s_(s) {
+        std::cout << std::format("BigString is constructed:{}\n", s) << std::endl;
+    }
+};
+
+using Mymap = std::map<std::string, BigString>;
+
+void printm(const Mymap& m) {
+    for (const auto& [k, v] : m) {
+        std::cout << std::format("key:{}, value:{}\n", k, v.s_);
+    }
+    std::cout << "\n";
+}
+TEST_CASE("Test CPP20 007")  {
+    Mymap m;
+
+    m.try_emplace("Miles", "Trumpet");
+    m.try_emplace("Hendrix", "Guitar");
+    m.try_emplace("Krupa", "Drums");
+    m.try_emplace("Zappa", "Guitar");
+    m.try_emplace("Liszt", "Piano");
+    printm(m);
+
+    cout << "\n";
+    cout << "emplace(Hendrix)\n";
+    m.emplace("Hendrix", "Singer");
+    cout << "try_emplace(Zappa)\n";
+    m.try_emplace("Zappa", "Composer");
+    printm(m);
+}
