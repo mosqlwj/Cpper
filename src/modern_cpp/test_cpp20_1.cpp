@@ -9,6 +9,12 @@
 #include <string>
 #include <span>
 #include <map>
+#include <unordered_map>
+#include <iterator>
+#include <algorithm>
+#include <set>
+#include <deque>
+
 using namespace std;
 constexpr auto use_string() {
 //    std::string str{"hello"};
@@ -157,6 +163,7 @@ void printm(const Mymap& m) {
     }
     std::cout << "\n";
 }
+
 TEST_CASE("Test CPP20 007")  {
     Mymap m;
 
@@ -173,4 +180,147 @@ TEST_CASE("Test CPP20 007")  {
     cout << "try_emplace(Zappa)\n";
     m.try_emplace("Zappa", "Composer");
     printm(m);
+}
+
+/**
+* 测试unordered_map keys
+*/
+
+struct Coord {
+    int x;
+    int y;
+};
+
+using Coordmap = std::unordered_map<Coord, int>;
+
+bool operator==(const Coord& lhs, const Coord& rhs) {
+    return lhs.x == rhs.x && lhs.y == rhs.y;
+}
+
+
+
+namespace std {
+    template<>
+    struct hash<Coord> {
+        size_t operator()(const Coord& c) const {
+            return static_cast<size_t>(c.x)
+                   + static_cast<size_t>(c.y);
+        }
+    };
+}
+
+void print_Coordmap(const Coordmap& m) {
+    for (const auto& [k, v] : m) {
+        std::cout << std::format("key:({} {}), value:{}\n", k.x, k.y, v);
+    }
+    std::cout << "\n";
+}
+
+TEST_CASE("Test CPP20 008")  {
+    Coordmap m {
+            { {0, 0}, 1 },
+            { {0, 1}, 2 },
+            { {2, 1}, 3 }
+    };
+    print_Coordmap(m);
+}
+
+/**
+* 测试 set word
+*/
+
+using input_it = std::istream_iterator<std::string>;
+
+TEST_CASE("Test CPP20 009")  {
+    input_it it{std::cin};
+    input_it end{};
+    std::set<std::string> words;
+    std::copy(it, end, std::inserter(words, words.begin()));
+
+    for (const auto& w : words) {
+        std::cout << std::format("{} ", w);
+    }
+    std::cout << std::endl;
+}
+
+/**
+ * 测试rpn
+ */
+
+class RPN {
+
+public:
+    // process an operand/operator
+    double op(const string & s) {
+        if(is_numeric(s)) {
+            double v{stod(s, nullptr)};
+            deq_.push_front(v);
+            return v;
+        }
+        else return optor(s);
+    }
+
+    // empty the stack
+    void clear() {
+        deq_.clear();
+    }
+
+    // print the stack
+    string get_stack_string() const {
+        string s{};
+        for(auto v : deq_) {
+            s += format("{} ", v);
+        }
+        return s;
+    }
+private:
+    std::pair<double, double> pop_get2() {
+        if (deq_.size() < 2) return {zero_, zero_};
+        double v1{ deq_.front() };
+        deq_.pop_front();
+        double v2{ deq_.front() };
+        deq_.pop_front();
+        return {v1, v2};
+    }
+
+    bool is_numeric(const std::string& s) {
+        for (auto& e : s) {
+            if (e != '.' && !std::isdigit(e)) return false;
+        }
+        return true;
+    }
+
+    double optor(const std::string& op) {
+        std::unordered_map<std::string, double(*)(double, double)> opmap{
+                {"+", [](double r, double l) { return r + l; }},
+                {"-", [](double r, double l) { return r - l; }},
+                {"*", [](double r, double l) { return r * l; }},
+                {"/", [](double r, double l) { return r / l; }}
+        };
+        if (opmap.find(op) == opmap.end()) return zero_;
+
+        auto [l, r] = pop_get2();
+        if (op == "/" && r == zero_) {
+            deq_.push_front(inf_);
+        } else {
+            deq_.push_front(opmap[op](l, r));
+        }
+        return deq_.front();
+    }
+private:
+
+    std::deque<double> deq_;
+    constexpr static double zero_{0.0};
+    constexpr static double inf_{std::numeric_limits<double>::infinity()};
+};
+
+
+TEST_CASE("Test CPP20 010")  {
+    RPN rpn;
+    vector<string> opv = {"9", "6", "*", "2", "3", "*", "+"};
+    for (auto o : opv) {
+        rpn.op(o);
+        auto stack_str = rpn.get_stack_string();
+        cout << format("{}：{}\n", o, stack_str);
+    }
 }
