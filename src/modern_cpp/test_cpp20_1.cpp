@@ -14,6 +14,7 @@
 #include <algorithm>
 #include <set>
 #include <deque>
+#include <ranges>
 
 using namespace std;
 constexpr auto use_string() {
@@ -323,4 +324,100 @@ TEST_CASE("Test CPP20 010")  {
         auto stack_str = rpn.get_stack_string();
         cout << format("{}：{}\n", o, stack_str);
     }
+}
+
+/**
+* 测试seq
+*/
+
+template<typename T>
+class Seq {
+public:
+    Seq(T start, T end) : start_{start}, end_{end}  {}
+
+    class iterator {
+    public:
+        using iterator_concept  = std::forward_iterator_tag;
+        using iterator_category = std::forward_iterator_tag;
+        using value_type        = std::remove_cv_t<T>;
+        using difference_type   = std::ptrdiff_t;
+        using pointer           = const T*;
+        using reference         = const T&;
+
+        explicit iterator(T pos) : value_{pos} {}
+
+        T operator*() { return value_; }
+        iterator& operator++() {
+            ++value_;
+            return *this;
+        }
+
+        iterator operator++(T) {
+            iterator temp = *this;
+            ++*this;
+            return temp;
+        }
+
+        bool operator!=(const iterator& other) const {
+            return value_ != other.value_;
+        }
+
+        bool operator==(const iterator& other) const {
+            return value_ == other.value_;
+        }
+
+    private:
+        T value_;
+    };
+
+    ///////////////////////////////////////////
+    iterator begin() const { return iterator{start_}; }
+    iterator end() const { return iterator{end_}; }
+private:
+    T start_;
+    T end_;
+};
+
+TEST_CASE("Test CPP20 011")  {
+    Seq<int> seq{1, 10};
+
+    for (auto o : seq) {
+        cout << format("{}\n", o);
+    }
+}
+
+TEST_CASE("Test CPP20 012")  {
+//    Seq<int> seq{1, 10};
+    std::vector<int> seq{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    auto [min, max] = ranges::minmax_element(seq);
+    std::cout << std::format("min:{}, max:{}\n", *min, *max);
+}
+
+/**
+* 测试iterator-adaptor
+*/
+void printc2(const auto& v, const std::string_view s = "") {
+    if (s.size()) { std::cout << std::format("{}\n", s); }
+    for (auto e : v) {
+        std::cout << std::format("{} ", e);
+    }
+    std::cout << std::endl;
+}
+
+TEST_CASE("Test CPP20 013")  {
+    deque<int> d1{1, 2, 3, 4, 5};
+    deque<int> d2(d1.size());
+    std::copy(d1.begin(), d1.end(), d2.begin());
+    printc2(d1);
+    printc2(d2, "d2 copy: ");
+
+    std::copy(d1.begin(), d1.end(), std::back_inserter(d2));
+    printc2(d2, "d2 back_inserter: ");
+
+    std::copy(d1.begin(), d1.end(), std::ostream_iterator<int>(cout));
+    std::cout << std::endl;
+
+    std::vector<std::string> vs;
+    std::copy(std::istream_iterator<std::string>(cin), std::istream_iterator<std::string>(), std::back_inserter(vs));
+    printc2(vs, "vs from istream:");
 }

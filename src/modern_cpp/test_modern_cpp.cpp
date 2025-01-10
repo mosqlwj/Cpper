@@ -8,6 +8,9 @@
 #include <string_view>
 #include <iostream>
 #include <utility> // for std::forward
+#include <type_traits>
+#include <algorithm>
+#include <format>
 
 /**
  * 本cpp文件，用于测试吴咏伟的现代C++编程
@@ -287,4 +290,98 @@ TEST_CASE("Testing Modern CPP 008") {
     } catch (const std::exception& e) {
         std::cout << e.what() << std::endl;
     }
+}
+
+//////////////////////////////////////////////////////////////
+/**
+ * @book 现代 C++ 教程
+ * @link https://changkun.de/modern-cpp/
+ */
+
+/**
+* chap-2 2.1.1 常量
+*/
+
+void foo_2_1(int i) {
+    std::cout << "foo(int) is called" << std::endl;
+}
+
+void foo_2_1(char* str) {
+    std::cout << "foo(char*) is called" << std::endl;
+}
+
+TEST_CASE("Testing Modern CPP 2.1.1") {
+    if (std::is_same_v<decltype(NULL), decltype(0)>) {
+        std::cout << "NULL is 0" << std::endl;
+    }
+
+    if (std::is_same_v<decltype(NULL), decltype((void*)0)>) {
+        std::cout << "NULL is (void*)0" << std::endl;
+    }
+
+    if (std::is_same_v<decltype(NULL), decltype(nullptr)>) {
+        std::cout << "NULL is nullptr" << std::endl;
+    }
+
+    foo_2_1(0);
+    foo_2_1(nullptr);
+}
+
+/**
+* chap-2 2.1.2 测试constexpr常量表达式和const常量的区别
+*/
+#define LEN 10
+
+int len_foo() {
+    int i = 2;
+    return i;
+}
+
+constexpr int len_foo_constexpr() {
+    int i = 5;
+    return i;
+}
+
+constexpr int fib(int n) {
+    if (n < 2) {
+        return 1;
+    }
+    return fib(n - 1) + fib(n - 2);
+}
+
+TEST_CASE("Testing Modern CPP 2.1.2") {
+    char arr_1[10];
+    char arr_2[LEN];
+
+    int len = 10;
+    char arr_3[len]; // ?
+
+    const int len_2 = len + 1;
+    constexpr int len_2_constexpr = 1 + 2 + 2;
+    char arr_4[len_2]; // ?
+    char arr_5[len_2_constexpr];
+
+    char arr_6[len_foo() + 5]; // ?
+
+    char arr_7[len_foo_constexpr() + 5];
+
+    std::cout << fib(10) << std::endl;
+
+    int size = 10;
+    int arr_8[size];
+}
+
+/**
+* chap-2 2.2.1 测试if/switch变量声明强化
+*/
+
+TEST_CASE("Testing Modern CPP 2.2.1")  {
+    std::vector<int> v = {1, 2, 3, 4};
+    if (auto it = std::find(v.begin(), v.end(), 3); it != v.end()) {
+        *it = 666;
+    }
+    for (auto& e : v) {
+        std::cout << e << " ";
+    }
+    std::cout << std::endl;
 }
