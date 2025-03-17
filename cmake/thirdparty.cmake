@@ -12,7 +12,8 @@ target_include_directories(doctest INTERFACE ${HOME_THIRDPARTY}/doctest)
 
 ############################################################
 # 添加cli11库
-add_library(cli11 INTERFACE)
+add_library(cli11 INTERFACE
+        ../src/modern_cpp/test_concurrent.cpp)
 target_include_directories(cli11 INTERFACE ${HOME_THIRDPARTY}/cli11)
 
 ############################################################
