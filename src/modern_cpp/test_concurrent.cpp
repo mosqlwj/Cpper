@@ -6,6 +6,9 @@
 #include <iostream>
 #include <format>
 #include <thread>
+#include <mutex>
+#include <future>
+#include <cmath>
 
 TEST_CASE("Test Concurrent 001") {
 
@@ -89,4 +92,162 @@ TEST_CASE("Test Concurrent 006") {
     }
 
     // f();
+}
+
+// test std::this_thread()
+TEST_CASE("Test Concurrent 007") {
+    std::cout << std::this_thread::get_id() << std::endl;
+
+    std::thread t{[]() {
+        std::cout << std::this_thread::get_id() << std::endl;
+    }};
+
+    t.join();
+    // f();
+}
+
+using namespace std::chrono_literals;
+
+TEST_CASE("Test Concurrent 008") {
+
+//    std::this_thread::sleep_for(std::chrono::seconds(5));
+    std::this_thread::sleep_for(3s);
+}
+
+TEST_CASE("Test Concurrent 009") {
+    // 获取当前时间点
+    auto now = std::chrono::system_clock::now();
+
+    // 设置要等待的时间点为当前时间点之后的5秒
+    auto wakeup_time = now + 5s;
+
+    // 输出当前时间
+    auto now_time = std::chrono::system_clock::to_time_t(now);
+    std::cout << "Current time:\t\t" << std::put_time(std::localtime(&now_time), "%H:%M:%S") << std::endl;
+
+    // 输出等待的时间点
+    auto wakeup_time_time = std::chrono::system_clock::to_time_t(wakeup_time);
+    std::cout << "Waiting until:\t\t" << std::put_time(std::localtime(&wakeup_time_time), "%H:%M:%S") << std::endl;
+
+    // 等待到指定的时间点
+    std::this_thread::sleep_until(wakeup_time);
+
+    // 输出等待结束后的时间
+    now = std::chrono::system_clock::now();
+    now_time = std::chrono::system_clock::to_time_t(now);
+    std::cout << "Time after waiting:\t" << std::put_time(std::localtime(&now_time), "%H:%M:%S") << std::endl;
+}
+
+TEST_CASE("Test Concurrent 010") {
+    std::thread t{[]() {
+        std::cout << std::this_thread::get_id() << std::endl;
+    }};
+
+    std::cout << t.joinable() << std::endl;
+
+    std::thread t2{std::move(t)};
+    std::cout << t.joinable() << std::endl;
+    std::cout << t2.joinable() << std::endl;
+//    t.join();
+    t2.join();
+
+}
+
+TEST_CASE("Test Concurrent 011") {
+    std::thread t;
+    std::cout << t.joinable() << std::endl;
+
+    std::thread t2{[]() {}};
+
+    t = std::move(t2);
+    std::cout << t.joinable() << std::endl;
+    std::cout << t2.joinable() << std::endl;
+    t.join();
+//    t2.join();
+
+}
+
+// call once
+
+void init() {
+    std::cout << "Do Something" << std::endl;
+}
+
+void worker(std::once_flag &flag) {
+    std::call_once(flag, init);
+}
+
+TEST_CASE("Test Concurrent 012")  {
+    std::once_flag flag;
+    std::thread t1(worker, std::ref(flag));
+    std::thread t2(worker, std::ref(flag));
+
+    t1.join();
+    t2.join();
+}
+
+// C++20 jthread
+TEST_CASE("Test Concurrent 013")  {
+
+}
+
+
+/////////////////////////////////////////////////////////////////////////
+// async
+static constexpr int MAX = 10e8;
+static double sum = 0;
+
+void worker100(int min, int max) {
+    for (int i = min; i < max; ++i) {
+        sum += sqrt(i);
+    }
+}
+
+TEST_CASE("Test Concurrent 100")  {
+    sum = 0;
+    auto f1 = std::async(std::launch::async, worker100, 0,MAX);
+    std::cout << "Async task triggered" << std::endl;
+    f1.wait();
+    std::cout << "Async task finished, sum is:" << sum << std::endl;
+}
+
+// async lambda
+TEST_CASE("Test Concurrent 101")  {
+    double result = 0;
+    auto f1 = std::async(std::launch::async, [&result]() {
+        for (int i = 0; i < MAX; ++i) {
+            result += sqrt(i);
+        }
+    });
+    f1.wait();
+    std::cout << "Async task finished, sum is:" << result << std::endl;
+}
+
+class Worker {
+public:
+    Worker(int min, int max) : min_{min}, max_{max}, result_{0} {}
+
+    void Work() {
+        for (int i = min_; i < max_; ++i) {
+            result_ += sqrt(i);
+        }
+//        return result_;
+    }
+
+    double GetResult() {
+        return result_;
+    }
+
+private:
+    int min_;
+    int max_;
+    double result_;
+};
+
+TEST_CASE("Test Concurrent 102")  {
+    Worker w(0, MAX);
+    auto f1 = std::async(std::launch::async, &Worker::Work, &w);
+    std::cout << "Async task triggered" << std::endl;
+    f1.wait();
+    std::cout << "Async task finished, sum is:" << w.GetResult() << std::endl;
 }
