@@ -9,6 +9,8 @@
 #include <mutex>
 #include <future>
 #include <cmath>
+#include <list>
+#include <numeric>
 
 TEST_CASE("Test Concurrent 001") {
 
@@ -250,4 +252,136 @@ TEST_CASE("Test Concurrent 102")  {
     std::cout << "Async task triggered" << std::endl;
     f1.wait();
     std::cout << "Async task finished, sum is:" << w.GetResult() << std::endl;
+}
+
+// 共享数据
+
+std::mutex mtx_200;
+void f_200() {
+    mtx_200.lock();
+    std::cout << std::this_thread::get_id() << "\n";
+    mtx_200.unlock();
+}
+
+void f_201() {
+    std::lock_guard<std::mutex> lc{mtx_200};
+    std::cout << std::this_thread::get_id() << "\n";
+
+}
+
+TEST_CASE("Test Concurrent 200") {
+    std::vector<std::thread> threads;
+    for (int i = 0; i < 100; ++i) {
+//        threads.emplace_back(f_200);
+        threads.emplace_back(f_201);
+    }
+
+    for (auto& thread : threads) {
+        thread.join();
+    }
+}
+
+std::mutex m;
+
+void add_to_list(int n, std::list<int>& list) {
+    std::vector<int> numbers(n + 1);
+    std::iota(numbers.begin(), numbers.end(), 0);
+    int sum = std::accumulate(numbers.begin(), numbers.end(), 0);
+
+    {
+        std::lock_guard<std::mutex> lc{ m };
+        list.push_back(sum);
+    }
+}
+void print_list(const std::list<int>& list) {
+    std::lock_guard<std::mutex> lc{ m };
+    for (const auto& i : list) {
+        std::cout << i << ' ';
+    }
+    std::cout << '\n';
+}
+
+TEST_CASE("Test Concurrent 201") {
+    std::list<int> list;
+    for (int i = 0; i < 10; ++i) {
+        std::thread t1{ add_to_list,i,std::ref(list) };
+        std::thread t2{ add_to_list,i,std::ref(list) };
+        std::thread t3{ print_list,std::cref(list) };
+        std::thread t4{ print_list,std::cref(list) };
+        t1.join();
+        t2.join();
+        t3.join();
+        t4.join();
+    }
+}
+
+//////////////////////////////
+
+//std::mutex mtx_202;
+
+//void thread_function(int id) {
+//    if (mtx_202.try_lock()) {
+//        std::cout << "线程：" << id << " 获得锁" << std::endl;
+//        // 临界区代码
+//        std::this_thread::sleep_for(std::chrono::milliseconds(100)); // 模拟临界区操作
+//
+//
+//        mtx_202.unlock(); // 解锁
+//
+//        std::cout << "线程：" << id << " 释放锁" << std::endl;
+//    } else {
+//        std::cout << "线程：" << id << " 尝试获得锁失败" << std::endl;
+//    }
+//}
+
+std::mutex mtx_202;
+std::mutex cout_mtx;  // 专门用于保护cout输出
+
+void thread_function(int id) {
+    bool locked = mtx_202.try_lock();
+
+    {
+        std::lock_guard<std::mutex> cout_guard(cout_mtx);
+        if (locked) {
+            std::cout << "线程：" << id << " 获得锁" << std::endl;
+        } else {
+            std::cout << "线程：" << id << " 尝试获得锁失败" << std::endl;
+            return;
+        }
+    }
+
+    try {
+        // 临界区代码
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    }
+    catch (...) {
+        mtx_202.unlock();
+        throw;
+    }
+
+    mtx_202.unlock();
+
+    std::lock_guard<std::mutex> cout_guard(cout_mtx);
+    std::cout << "线程：" << id << " 释放锁" << std::endl;
+}
+
+TEST_CASE("Test Concurrent 202") {
+    std::thread t1{ thread_function, 1};
+    std::thread t2{ thread_function, 2};
+    t1.join();
+    t2.join();
+}
+
+///////////////////////////////////////////////
+int global_counter = 0;
+thread_local int thread_local_counter = 0;
+
+void print_counters(){
+    std::cout << "global：" << global_counter++ << '\n';
+    std::cout << "thread_local：" << thread_local_counter++ << '\n';
+}
+
+TEST_CASE("Test Concurrent 203") {
+    std::thread{ print_counters }.join();
+    std::thread{ print_counters }.join();
 }
