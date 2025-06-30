@@ -13,6 +13,8 @@ add_subdirectory(modern_cpp)
 
 # add_subdirectory(./leetcode)
 
+#add_subdirectory(./magic_enum)
+
 
 
 
